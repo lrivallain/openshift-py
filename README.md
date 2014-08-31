@@ -20,9 +20,15 @@ Add this upstream flask repo
     git remote add upstream -m master https://github.com/lrivallain/openshift.git
     git pull -s recursive -X theirs upstream master
     
+
 Then build container image
 
     docker build -q -t lrivallain/openshift .
+
+or get image from docker public repository
+
+    docker pull lrivallain/openshift
+
 
 And run a container based on this image
 
