@@ -1,0 +1,6 @@
+data/
+libs/
+wsgi/
+README
+README.md
+setup.py

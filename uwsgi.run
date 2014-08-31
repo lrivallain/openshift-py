@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Activate the venv
+. /opt/openshift_run/venv/bin/activate
+
+# install project deps
+cd /data/ && python setup.py install
+
+# run project
+cd wsgi/  && uwsgi --http :8080 --wsgi-file application

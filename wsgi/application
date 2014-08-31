@@ -4,13 +4,23 @@ import sys
 
 sys.path.insert(0, os.path.dirname(__file__) or '.')
 
-PY_DIR = os.path.join(os.environ['OPENSHIFT_HOMEDIR'], "python")
 
-virtenv = PY_DIR + '/virtenv/'
+# Running on OpenShift ?
+ON_OPENSHIFT = False
+if os.environ.has_key('OPENSHIFT_REPO_DIR'):
+    ON_OPENSHIFT = True
+    
+if ON_OPENSHIFT:
+    PY_DIR = os.path.join(os.environ['OPENSHIFT_HOMEDIR'], "python")
+    virtenv = PY_DIR + '/virtenv/'
+    PY_CACHE = os.path.join(virtenv, 'lib', os.environ['OPENSHIFT_PYTHON_VERSION'], 'site-packages')
+    os.environ['PYTHON_EGG_CACHE'] = os.path.join(PY_CACHE)
+else:
+    PYTHON_VERSION = "python%d.%d" % (sys.version_info.major, sys.version_info.minor)
+    virtenv = os.path.dirname(__file__) + '../venv/'
+    PY_CACHE = os.path.join(virtenv, 'lib', PYTHON_VERSION, 'site-packages')
+    os.environ['PYTHON_EGG_CACHE'] = os.path.join(PY_CACHE)
 
-PY_CACHE = os.path.join(virtenv, 'lib', os.environ['OPENSHIFT_PYTHON_VERSION'], 'site-packages')
-
-os.environ['PYTHON_EGG_CACHE'] = os.path.join(PY_CACHE)
 virtualenv = os.path.join(virtenv, 'bin/activate_this.py')
 
 try:
