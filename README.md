@@ -1,39 +1,45 @@
-Flask on OpenShift
-==================
+Run an OpenShift based + Py2.6 + Flask in container
+===================================================
 
-This git repository helps you get up and running quickly w/ a Flask installation
-on OpenShift.
+This git repository helps you create a simple container to run a Python2.6 + Flask application for openshift, in a docker container.
 
 
-Running on OpenShift
-----------------------------
+Running on Docker
+-----------------
+Install Docker: http://docker.io
 
 Create an account at https://www.openshift.com
 
 Create a python application
 
-    rhc app create flask python-2.6
+    rhc app create myflaskapp python-2.6
 
 Add this upstream flask repo
 
-    cd flask
-    git remote add upstream -m master https://github.com/openshift/flask-example.git
+    cd myflaskapp  
+    git remote add upstream -m master https://github.com/lrivallain/openshift.git
     git pull -s recursive -X theirs upstream master
     
-Then push the repo upstream
+Then build container image
+
+    docker build -q -t lrivallain/openshift .
+
+And run a container based on this image
+
+    docker run -v /data/openshift:/data -p 8080:8080 lrivallain/openshift
+
+That's it, you can now checkout your application at:
+
+    http://127.0.0.1:8080
+
+
+Running on Openshift
+--------------------
+
+Push change to openshift
 
     git push
 
 That's it, you can now checkout your application at:
 
-    http://flask-$yournamespace.rhcloud.com
-
-------------------------------
-
-To get more log messages in your OpenShift logs please add the following line to your code
-
-    app.config['PROPAGATE_EXCEPTIONS'] = True
-
-To read more about logging in Flask please see this email
-
-http://librelist.com/browser//flask/2012/1/27/catching-exceptions-from-flask/
+    http://myflaskapp-$yournamespace.rhcloud.com

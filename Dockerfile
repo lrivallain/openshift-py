@@ -14,14 +14,14 @@ MAINTAINER ludovic.rivallain@gmail.com
 RUN apt-get update
 RUN apt-get upgrade -qqy
 
-# install usgi
-RUN apt-get install build-essential python-dev python-pip  -qqy
-RUN pip install uwsgi
+# install python 2.6 and virtualenv
+RUN apt-get install python2.6 python2.6-dev build-essential python-pip -qqy
 RUN pip install virtualenv
 
 # create a folder for openshift virtualenv for python 2.7
 RUN mkdir -p /opt/openshift_run
-RUN virtualenv /opt/openshift_run/venv -p python2.7 --no-site-packages
+RUN virtualenv /opt/openshift_run/venv -p python2.6 --no-site-packages
+RUN . /opt/openshift_run/venv/bin/activate && pip install uwsgi
 
 # add and chmod the run script for app
 ADD uwsgi.run /opt/uwsgi.run

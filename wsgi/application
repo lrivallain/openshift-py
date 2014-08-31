@@ -16,7 +16,7 @@ if ON_OPENSHIFT:
     PY_CACHE = os.path.join(virtenv, 'lib', os.environ['OPENSHIFT_PYTHON_VERSION'], 'site-packages')
     os.environ['PYTHON_EGG_CACHE'] = os.path.join(PY_CACHE)
 else:
-    PYTHON_VERSION = "python%d.%d" % (sys.version_info.major, sys.version_info.minor)
+    PYTHON_VERSION = "python%d.%d" % (sys.version_info[0], sys.version_info[1])
     virtenv = os.path.dirname(__file__) + '../venv/'
     PY_CACHE = os.path.join(virtenv, 'lib', PYTHON_VERSION, 'site-packages')
     os.environ['PYTHON_EGG_CACHE'] = os.path.join(PY_CACHE)
