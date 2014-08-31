@@ -1,4 +1,4 @@
-Run an OpenShift based + Py2.6 + Flask in a Docker container
+Run an OpenShift based + Py2.7 + Flask in a Docker container
 ============================================================
 
 This git repository helps you create a simple container to run a Python2.7 + Flask application for openshift, in a docker container.
@@ -25,7 +25,7 @@ Then build container image
 
     docker build -q -t lrivallain/openshift-py2.7 .
 
-or get image from docker public repository
+or get the same image from docker public repository
 
     docker pull lrivallain/openshift-py2.7
 
@@ -55,16 +55,15 @@ Python 2.6
 
 To run a docker container for Openshift + Python 2.6 + Flask:
 
-build container image
+build container image from python 2.6 Dockerfile
 
     cd py-2.6
     docker build -q -t lrivallain/openshift-py2.6 .
 
-or get image from docker public repository
+or get the same image from docker public repository
 
     docker pull lrivallain/openshift-py2.6
 
 And run a container based on this image
 
     docker run -v `pwd`:/data -p 8080:8080 -ti lrivallain/openshift-py2.6
-
