@@ -32,7 +32,7 @@ or get image from docker public repository
 
 And run a container based on this image
 
-    docker run -v `pwd`:/data -p 8080:8080 lrivallain/openshift-py2.7
+    docker run -v `pwd`:/data -p 8080:8080 -ti lrivallain/openshift-py2.7
 
 That's it, you can now checkout your application at:
 
@@ -57,8 +57,14 @@ To run a docker container for Openshift + Python 2.6 + Flask:
 
 build container image
 
-    docker build -q -t lrivallain/openshift-py2.6 - < Dockerfile2.6
+    cd py-2.6
+    docker build -q -t lrivallain/openshift-py2.6 .
 
 or get image from docker public repository
 
     docker pull lrivallain/openshift-py2.6
+
+And run a container based on this image
+
+    docker run -v `pwd`:/data -p 8080:8080 -ti lrivallain/openshift-py2.6
+
