@@ -2,7 +2,13 @@ APPNAME=python27
 APPROOT=/tmp
 APPPORT=8080
 APPTIMEOUT=60
-DOCKER_IP=`echo $DOCKER_HOST | awk -F "[\:\/]+" '{print $2}'`
+
+# get docker host IP
+if [ -z "$DOCKER_HOST" ]; then
+    DOCKER_IP=127.0.0.1
+else
+    DOCKER_IP=`echo $DOCKER_HOST | awk -F "[\:\/]+" '{print $2}'`
+fi
 
 # temp directory
 cd $APPROOT
@@ -25,6 +31,8 @@ docker run -d --name $APPNAME -v `pwd`:/data -p $APPROOT:8080 -ti lrivallain/ope
 echo "Waiting $APPTIMEOUT seconds for container to start application..."
 sleep $APPTIMEOUT
 appcontent=`curl http://$DOCKER_IP:$APPPORT`
-[ appcontent -eq "Hello World!"] && echo "Working !" || echo "Not working :("
+[ "$appcontent"='Hello World!' ] && echo 'Working !' || echo 'Not working :('
 
+# clean
 docker rm $APPNAME
+rhc app delete $APPNAME --confirm
