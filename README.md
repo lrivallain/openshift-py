@@ -17,7 +17,7 @@ Create a python application
 Add this upstream flask repo
 
     cd myflaskapp  
-    git remote add upstream -m master https://github.com/lrivallain/openshift.git
+    git remote add upstream -m master https://github.com/lrivallain/openshift-py.git
     git pull -s recursive -X theirs upstream master
     
 
