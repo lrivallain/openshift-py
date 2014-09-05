@@ -18,7 +18,7 @@ RUN apt-get upgrade -qqy
 # install python 2.6 and virtualenv
 RUN apt-get install python python-dev build-essential python-pip -qqy
 RUN pip install virtualenv
-RUN env --unset=DEBIAN_FRONTEND
+RUN unset DEBIAN_FRONTEND
 
 # create a folder for openshift virtualenv for python 2.7
 RUN mkdir -p /opt/openshift_run

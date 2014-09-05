@@ -50,6 +50,25 @@ That's it, you can now checkout your application at:
 
     http://myflaskapp-$yournamespace.rhcloud.com
 
+
+Environment variables
+---------------------
+Following environment variables are set in containers and can be used in your applications:
+
+    HISTFILE="/root/.bash_history"
+    HOME="/opt/openshift/"
+    OPENSHIFT_DATA_DIR="/opt/openshift_run/data/"
+    OPENSHIFT_HOMEDIR="/opt/openshift/"
+    OPENSHIFT_PYTHON_DIR="/opt/openshift/python/"
+    OPENSHIFT_PYTHON_LOG_DIR="/opt/openshift_run/logs/"
+    OPENSHIFT_PYTHON_VERSION="2.7"
+    OPENSHIFT_REPO_DIR="/data/"
+    OPENSHIFT_TMP_DIR="/tmp/"
+    TMP="/tmp/"
+
+For more informations about usage of environment variables, please refer to the openshift documention: https://access.redhat.com/documentation/en-US/OpenShift_Online/2.0/html/Cartridge_Specification_Guide/chap-Environment_Variables.html
+
+
 Python 2.6
 ----------
 
