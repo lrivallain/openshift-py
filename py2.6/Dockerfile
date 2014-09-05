@@ -29,9 +29,21 @@ RUN . /opt/openshift/python/virtenv/bin/activate && pip install uwsgi
 ADD uwsgi.run /opt/uwsgi.run
 RUN chmod +x /opt/uwsgi.run
 
+# create folders
+RUN mkdir /opt/openshift_run/logs/
+RUN mkdir /opt/openshift_run/data/
+
 # minimals openshift env variables
 ENV OPENSHIFT_PYTHON_VERSION 2.6
-ENV OPENSHIFT_HOMEDIR /opt/openshift/
+ENV OPENSHIFT_PYTHON_DIR     /opt/openshift/python/
+ENV OPENSHIFT_HOMEDIR        /opt/openshift/
+ENV HOME                     /opt/openshift/
+ENV HISTFILE                 /root/.bash_history
+ENV TMP                      /tmp/
+ENV OPENSHIFT_DATA_DIR       /opt/openshift_run/data/
+ENV OPENSHIFT_PYTHON_LOG_DIR /opt/openshift_run/logs/
+ENV OPENSHIFT_REPO_DIR       /data/
+ENV OPENSHIFT_TMP_DIR        /tmp/
 
 # default command
 CMD [ "/bin/bash", "/opt/uwsgi.run" ]
